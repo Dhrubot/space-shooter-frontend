@@ -11,12 +11,31 @@
     <body>
 
         <h1> MY Space shooting game</h1>
-        <div class="container">
+        <div class="container" id="user-container">
             <form id="new-user-form">
-                <input type="text" value="Enter Nickname">
+                <input type="text" id="new-user-nickname" placeholder="Enter nickname">
                 <input type="submit">
             </form>
         </div>
-        <script src=""></script>
+        <div class="container" id="nickname-container">
+            
+        </div>
+
+        <div class="container" id="high-score-container">
+            <ul id="high-score">
+
+            </ul>
+        </div>
+
+
+
+
+        <script src="src/adapters/GamesAdapter.js"></script>
+        <script src="src/adapters/UsersAdapter.js"></script>
+        <script src="src/components/app.js"></script>
+        <script src="src/components/gamesData.js"></script>
+        <script src="src/components/gameData.js"></script>
+        <script src="src/components/user.js"></script>
+        <script src="src/index.js"></script>
     </body>
 </html>
