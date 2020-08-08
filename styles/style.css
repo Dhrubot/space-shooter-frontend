@@ -1,0 +1,67 @@
+
+body {
+    background-color: black;
+}
+
+#main-play-area {
+    background-color: black;
+    width: 1260px;
+    height: 580px;
+}
+
+#player-ship {
+    position: absolute;
+    bottom: 30px;
+}
+
+.laser {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+}
+
+#ship-image {
+    width : 50px;
+    height: 50px;
+    position: relative;
+}
+
+.active-enemy {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+}
+
+.dead-enemy {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+}
+
+#start-button {
+        border: none;
+        position: absolute;
+        background: red;
+        height: 50px;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+        transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        -moz-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+      } 
+#start-img {
+    height: 150px;
+    width: 150px;
+}      
+
+#score-counter {
+    height: 50px;
+    width: 150px;
+    right: 10px;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
