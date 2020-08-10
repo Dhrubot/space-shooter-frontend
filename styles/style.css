@@ -4,6 +4,7 @@ body {
 }
 
 .welcome{
+    bottom: 80%;
     width: 200px;
     margin-top: 2em;
 }
@@ -138,6 +139,28 @@ body {
     position: absolute;
 }
 
+
 #high-score {
-    
+    color: red;
+    left: 35%;
+    top: 50%;
+    position: relative;
+}
+
+table {
+  width: 30%;
+}
+
+th, td {
+  border: 1px solid beige;
+  padding: 10px;
+  text-align: center;
+}
+
+#caption {
+    color: rgb(5, 5, 10);
+    background-color: brown;
+    text-decoration: crimson;
+    font-weight: bold;
+    font-size: 25pt;
 }

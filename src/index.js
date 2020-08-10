@@ -200,18 +200,14 @@ function createExitButton() {
 
 function gameOver() {
     document.removeEventListener("keydown", userShipMovement)
-    let score = document.getElementById('score').innerText
     let enemies = document.querySelectorAll('.active-enemy')
     enemies.forEach((enemy) => enemy.remove())
     let lasers = document.querySelectorAll(".laser")
     lasers.forEach(laser => laser.remove())
     let playerShip = document.getElementById('player-ship')
     playerShip.remove()
-    let gameOverDiv = document.createElement('div')
-    gameOverDiv.id = "game-over"
-    gameOverDiv.innerHTML = `<h2> Game Over! Your score is ${score}!</h2>`
-    gameOverDiv.style = 'color: blue;'
-    mainPlayArea.append(gameOverDiv)
+    createGameOverMsg()
+
     clearInterval(createEnemyShipsInterval)
     clearInterval(enemyShipMovement)
     header.remove()
@@ -220,5 +216,18 @@ function gameOver() {
 
 function renderHighscore() {
     let gamesData = new GamesData
-    gamesData.render()
+    gamesData.renderHighScore()
+}
+
+function createGameOverMsg() {
+    let score = document.getElementById('score').innerText
+    let gameOverDiv = document.createElement('div')
+    gameOverDiv.id = "game-over"
+    gameOverDiv.innerHTML = `<h2> Game Over! Your score is ${score}!</h2>`
+    gameOverDiv.style = 'top: 10px; color: blue;'
+    mainPlayArea.append(gameOverDiv)
+}
+
+function welcomeText(){
+
 }
