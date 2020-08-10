@@ -8,19 +8,18 @@ class GamesAdapter {
     }
 
     createGame(score, nickname) {
-        const gameData = {
+        const game = {
             score: score,
-            user: { nickname: nickname }
+            nickname: nickname
         }
         return fetch(this.baseUrl, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ gameData })
+            body: JSON.stringify({ game })
         })
         .then(res => res.json())
-        .then(data => console.log(data))
     }
     
 }
