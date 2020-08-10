@@ -5,7 +5,8 @@ const header = document.getElementById('header')
 let createEnemyShipsInterval
 let enemyShipMovement
 
-// document.addEventListener("keydown", function (e) {
+                // -----User Logic-------
+
 function userShipMovement(e) {
     if (e.key === "ArrowLeft") {
         e.preventDefault()
@@ -80,7 +81,7 @@ function moveLaser(laser) {
                 laser.remove()
                 enemy.src = "images/explosion.png"
                 enemy.classList.remove('active-enemy')
-                enemy.classList.add('dead-enemy')
+                enemy.classList.add('dead-enemy', 'fade-out')
                 scoreCounter.innerText = parseInt(scoreCounter.innerText) + 10
             }
         })
@@ -92,7 +93,10 @@ function moveLaser(laser) {
     }, 10)
 }
 
-function createEnemyShips() {
+                    // ----Enemy logic-----
+
+
+                    function createEnemyShips() {
     let enemyShips = []
     let i = 0
     while (i < 5){
@@ -130,6 +134,8 @@ function moveEnemyShip(enemyShip) {
 
 
 
+                // -----Shooting logic-----
+
 
 function shootEmDown(laser, enemy) {
     // debugger
@@ -166,6 +172,9 @@ function exitFuncListener() {
     })
 } 
 
+
+// -------Starting Game-----
+
 function startGame() {
     document.querySelector('#start-button').style.display = 'none'
     document.getElementById('user-container').style.display = 'none'
@@ -198,6 +207,9 @@ function createExitButton() {
     header.append(exitButtonDiv)
 }
 
+
+                // ------GameOver Logic--------
+
 function gameOver() {
     document.removeEventListener("keydown", userShipMovement)
     let enemies = document.querySelectorAll('.active-enemy')
@@ -211,10 +223,10 @@ function gameOver() {
     clearInterval(createEnemyShipsInterval)
     clearInterval(enemyShipMovement)
     header.remove()
-    renderHighscore()
+    renderHighScore()
 }
 
-function renderHighscore() {
+function renderHighScore() {
     let gamesData = new GamesData
     gamesData.renderHighScore()
 }
@@ -223,7 +235,7 @@ function createGameOverMsg() {
     let score = document.getElementById('score').innerText
     let gameOverDiv = document.createElement('div')
     gameOverDiv.id = "game-over"
-    gameOverDiv.innerHTML = `<h2> Game Over! Your score is ${score}!</h2>`
+    gameOverDiv.innerHTML = `<h2> Game Over!<br>Your score is ${score}!</h2>`
     gameOverDiv.style = 'top: 10px; color: blue;'
     mainPlayArea.append(gameOverDiv)
 }

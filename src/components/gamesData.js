@@ -11,7 +11,7 @@ class GamesData {
             games.forEach(game => this.games.push(new GameData(game)))
             this.sortByHighScore()
         })
-        .then(() => this.render())
+        .then(() => this.renderHighScore())
     }
 
     sortByHighScore(){
