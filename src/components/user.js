@@ -23,5 +23,6 @@ class User {
     renderUser(user) {
         const userDiv = document.getElementById('nickname-container')
         userDiv.innerHTML = `<h1> ${user.nickname} </h1>`
+        userDiv.style = "background-color: red"
     }
 }

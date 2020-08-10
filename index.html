@@ -9,44 +9,39 @@
         <link rel="stylesheet" href="styles/style.css">
     </head>
     <body>
-
-        <!-- <h1> MY Space shooting game</h1>
-        <div class="container" id="user-container">
-            <form id="new-user-form">
-                <input type="text" id="new-user-nickname" placeholder="Enter nickname">
-                <input type="submit">
-            </form>
-        </div>
-        <div class="container" id="nickname-container">
+        <div id="header">
 
         </div>
 
-
-        <div class="container" id="high-score-container">
-            <ul id="high-score">
-
-            </ul>
-        </div> -->
 
 
         <!-- Main Game Area -->
 
-        <div id="score-counter">
-            <h3><span style="color:blue">Your Score:</span> <span id ="score" style="color: red">0</span></h3>
-        </div>
 
         <div id="main-play-area">
-            <button id="start-button">Start Game</button>
-            <div id="player-ship" style="left: 630px;">
-                <img src="images/player-ship.png" id="ship-image">
+
+            <div class="container" id="user-container">
+                <div class="welcome">
+                    <h1>Welcome to space shooter!</h1>
+                </div>
+                <form id="new-user-form">
+                    <input type="text" id="new-user-nickname" placeholder="Enter a nickname to start game">
+                    <input type="submit" id="start-button" value="Start Game">
+                </form>
+            </div>
+            <div class="container" id="nickname-container">
+                            
+            </div>
+                            
+                            
+            <div class="container" id="high-score-container">
+                <ul id="high-score">
+                            
+                </ul>
             </div>
         </div>
 
-        <div id="exit-container">
-            <button id="exit">
-                Exit Game
-            </button>
-        </div>
+
 
 
         <script src="src/adapters/GamesAdapter.js"></script>

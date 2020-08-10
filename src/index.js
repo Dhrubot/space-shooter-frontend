@@ -1,11 +1,12 @@
-// const app = new App()
+const app = new App()
 
-const userShip = document.getElementById('player-ship')
 const mainPlayArea = document.getElementById('main-play-area')
-const scoreCounter = document.getElementById('score')
+const header = document.getElementById('header')
+let createEnemyShipsInterval
+let enemyShipMovement
 
-
-document.addEventListener("keydown", function (e) {
+// document.addEventListener("keydown", function (e) {
+function userShipMovement(e) {
     if (e.key === "ArrowLeft") {
         e.preventDefault()
         moveShipLeft()
@@ -16,10 +17,21 @@ document.addEventListener("keydown", function (e) {
         e.preventDefault()
         fireLaser()
     }
-});
+}
 
+function createPlayerShip() {
+    const playerShip = document.createElement('div')
+    playerShip.style = "left: 630px;"
+    playerShip.id = 'player-ship'
+    const playerShipImg = document.createElement('img')
+    playerShipImg.src = 'images/player-ship.png'
+    playerShipImg.id = 'ship-image'
+    playerShip.appendChild(playerShipImg)
+    return playerShip
+}
 
 function moveShipLeft(){
+    const userShip = document.getElementById('player-ship')
     let leftPosition = userShip.style.left.replace("px", "");
     let left = parseInt(leftPosition, 10);
 
@@ -29,6 +41,7 @@ function moveShipLeft(){
 }
 
 function moveShipRight() {
+    const userShip = document.getElementById('player-ship')
     let leftPosition = userShip.style.left.replace("px", "");
     let left = parseInt(leftPosition, 10);
 
@@ -44,6 +57,7 @@ function fireLaser() {
 }
 
 function createLaser() {
+    const userShip = document.getElementById('player-ship')
     let xPosition = parseInt(window.getComputedStyle(userShip).getPropertyValue('bottom'))
     let yPosition = parseInt(window.getComputedStyle(userShip).getPropertyValue('left'))
 
@@ -57,6 +71,7 @@ function createLaser() {
 }
 
 function moveLaser(laser) {
+    const scoreCounter = document.getElementById('score')
     let laserInterval = setInterval(() => {
         let xPosition = parseInt(laser.style.bottom)
         let enemies = document.querySelectorAll('.active-enemy')
@@ -77,38 +92,32 @@ function moveLaser(laser) {
     }, 10)
 }
 
-function createEnemyShip() {
-
+function createEnemyShips() {
+    let enemyShips = []
+    let i = 0
+    while (i < 5){
         let newEnemyShip = document.createElement('img')
         newEnemyShip.src = 'images/enemy-ship.png'
         newEnemyShip.classList.add('active-enemy')
-        newEnemyShip.style.bottom = '545px'
+        newEnemyShip.style.bottom = '500px'
         newEnemyShip.style.left = `${Math.floor(Math.random() * 1200)}px`
-        return newEnemyShip
+        enemyShips.push(newEnemyShip)
+        i++
+    }
 
+    return enemyShips
 }
 
-document.querySelector('#start-button').addEventListener('click', (e) => {
-    e.preventDefault()
-    startGame()
-})
 
-function startGame() {
-    document.querySelector('#start-button').style.display = 'none'
-    let ship = createEnemyShip()
-    mainPlayArea.appendChild(ship)
-    moveEnemyShip(ship)
-}
 
 function moveEnemyShip(enemyShip) {
-    let enemyShipMovement = setInterval(() => {
+    enemyShipMovement = setInterval(() => {
         let xPosition = parseInt(window.getComputedStyle(enemyShip).getPropertyValue('bottom'))
         if (xPosition <= 40) {
-            if (enemyShip.classList.contains('dead-enemy')) {
+            if (enemyShip.classList.contains("dead-enemy")) {
                 enemyShip.remove()
             } else {
                 gameOver()
-                clearInterval(enemyShipMovement)
             }    
           
         } else {
@@ -119,9 +128,7 @@ function moveEnemyShip(enemyShip) {
 }
 
 
-function gameOver(){
-    alert("Game Over!")
-}
+
 
 
 function shootEmDown(laser, enemy) {
@@ -145,4 +152,73 @@ function shootEmDown(laser, enemy) {
         return false
     }
    
+}
+
+document.querySelector('#start-button').addEventListener('click', (e) => {
+    e.preventDefault()
+    startGame()
+})
+
+function exitFuncListener() {
+    document.getElementById('exit-button').addEventListener('click', (e) => {
+        e.preventDefault()
+        gameOver()
+    })
+} 
+
+function startGame() {
+    document.querySelector('#start-button').style.display = 'none'
+    document.getElementById('user-container').style.display = 'none'
+    document.addEventListener("keydown", userShipMovement)
+    createScoreCounter()
+    createExitButton()
+    exitFuncListener()
+    let playerShip = createPlayerShip()
+    mainPlayArea.append(playerShip)
+    createEnemyShipsInterval = setInterval(() => {
+        let enemyShips = createEnemyShips()
+        enemyShips.map(enemyShip => {
+            mainPlayArea.append(enemyShip)
+            moveEnemyShip(enemyShip)
+        })
+    }, 5000)
+}
+
+function createScoreCounter(){
+    let scoreCounterDiv = document.createElement('div')
+    scoreCounterDiv.id = 'score-counter'
+    scoreCounterDiv.innerHTML = '<h3><span style="color:SlateGray">Your Score:</span> <span id="score" style="color: red">0</span></h3>'
+    header.append(scoreCounterDiv)
+}
+
+function createExitButton() {
+    let exitButtonDiv = document.createElement('div')
+    exitButtonDiv.id = 'exit-container'
+    exitButtonDiv.innerHTML = `<button id="exit-button"> Exit Game </button>`
+    header.append(exitButtonDiv)
+}
+
+function gameOver() {
+    document.removeEventListener("keydown", userShipMovement)
+    let score = document.getElementById('score').innerText
+    let enemies = document.querySelectorAll('.active-enemy')
+    enemies.forEach((enemy) => enemy.remove())
+    let lasers = document.querySelectorAll(".laser")
+    lasers.forEach(laser => laser.remove())
+    let playerShip = document.getElementById('player-ship')
+    playerShip.remove()
+    let gameOverDiv = document.createElement('div')
+    gameOverDiv.id = "game-over"
+    gameOverDiv.innerHTML = `<h2> Game Over! Your score is ${score}!</h2>`
+    gameOverDiv.style = 'color: blue;'
+    mainPlayArea.append(gameOverDiv)
+    clearInterval(createEnemyShipsInterval)
+    clearInterval(enemyShipMovement)
+    header.remove()
+    renderHighscore()
+}
+
+function renderHighscore() {
+    let gamesData = new GamesData
+    gamesData.render()
 }
