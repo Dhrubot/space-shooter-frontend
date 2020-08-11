@@ -96,7 +96,7 @@ function moveLaser(laser) {
                     // ----Enemy logic-----
 
 
-                    function createEnemyShips() {
+function createEnemyShips() {
     let enemyShips = []
     let i = 0
     while (i < 5){
@@ -160,10 +160,6 @@ function shootEmDown(laser, enemy) {
    
 }
 
-document.querySelector('#start-button').addEventListener('click', (e) => {
-    e.preventDefault()
-    startGame()
-})
 
 function exitFuncListener() {
     document.getElementById('exit-button').addEventListener('click', (e) => {
@@ -176,8 +172,11 @@ function exitFuncListener() {
 // -------Starting Game-----
 
 function startGame() {
+    // debugger
     document.querySelector('#start-button').style.display = 'none'
     document.getElementById('user-container').style.display = 'none'
+    document.getElementById('nickname-container').style.display = 'none'
+    
     document.addEventListener("keydown", userShipMovement)
     createScoreCounter()
     createExitButton()
@@ -196,7 +195,7 @@ function startGame() {
 function createScoreCounter(){
     let scoreCounterDiv = document.createElement('div')
     scoreCounterDiv.id = 'score-counter'
-    scoreCounterDiv.innerHTML = '<h3><span style="color:SlateGray">Your Score:</span> <span id="score" style="color: red">0</span></h3>'
+    scoreCounterDiv.innerHTML = `<h3><span style="color:SlateGray">${app.user.nickname}'s Score:</span> <span id="score" style="color: red">0</span></h3>`
     header.append(scoreCounterDiv)
 }
 
@@ -222,11 +221,18 @@ function gameOver() {
 
     clearInterval(createEnemyShipsInterval)
     clearInterval(enemyShipMovement)
+    createGame()
     header.remove()
-    renderHighScore()
+    renderHighscore()
 }
 
-function renderHighScore() {
+function createGame() {
+    let score = document.getElementById('score').innerText 
+    let gamesData = new GamesData
+    gamesData.createNewGame(score, app.user.nickname) 
+}
+
+function renderHighscore(){
     let gamesData = new GamesData
     gamesData.renderHighScore()
 }
@@ -236,10 +242,6 @@ function createGameOverMsg() {
     let gameOverDiv = document.createElement('div')
     gameOverDiv.id = "game-over"
     gameOverDiv.innerHTML = `<h2> Game Over!<br>Your score is ${score}!</h2>`
-    gameOverDiv.style = 'top: 10px; color: blue;'
+    gameOverDiv.style = 'top: 10px; color: LightBlue;'
     mainPlayArea.append(gameOverDiv)
-}
-
-function welcomeText(){
-
 }

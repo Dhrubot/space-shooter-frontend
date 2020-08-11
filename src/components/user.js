@@ -16,13 +16,26 @@ class User {
         const inputValue = this.userInput.value
         this.adapter.createUser(inputValue).then(user => {
             this.userInputContainer.style.display = "none";
-            this.renderUser(user)
+            this.nickname = user.nickname
+            this.welcomeMsg = `Welcome ${this.nickname}! Your mission should you choose to accept it, is to prevent enemy ships to reach the end line. So Hold Steady and Fight! Use your keyboard's "left" and "right" arrow to move your ship and "spacebar" for shooting. Good Luck!`
+            this.welcomeText(this.welcomeMsg)
+            setTimeout(startGame, 20000)
         })
     }
 
-    renderUser(user) {
-        const userDiv = document.getElementById('nickname-container')
-        userDiv.innerHTML = `<h1> ${user.nickname} </h1>`
-        userDiv.style = "background-color: red"
+
+
+    welcomeText(text) {
+       (function iterator(i) {
+            if (i < text.length) {
+                let container = document.getElementById('nickname-container')
+                container.style.marginTop = "200px"
+                container.innerHTML += text.charAt(i)
+                setTimeout(() => {
+                    iterator(++i);
+                }, 50);
+            }
+        })(0)
     }
+ 
 }
