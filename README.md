@@ -3,6 +3,9 @@ This is a straight forward space shooting game where the task of user ship is to
 
 Installation Instruction
 
-```clone this repo
+```
+clone this repo
 cd space-shooter-frontend
-open index.html```
+open index.html
+
+```
