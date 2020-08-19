@@ -102,7 +102,7 @@ function createEnemyShips() {
     while (i < 5){
         let newEnemyShip = document.createElement('img')
         newEnemyShip.src = 'images/enemy-ship.png'
-        newEnemyShip.classList.add('active-enemy')
+        newEnemyShip.className = 'active-enemy'
         newEnemyShip.style.bottom = '500px'
         newEnemyShip.style.left = `${Math.floor(Math.random() * 1200)}px`
         enemyShips.push(newEnemyShip)
@@ -221,12 +221,12 @@ function gameOver() {
 
     clearInterval(createEnemyShipsInterval)
     clearInterval(enemyShipMovement)
-    createGame()
+    saveGame()
     header.remove()
     renderHighscore()
 }
 
-function createGame() {
+function saveGame() {
     let score = document.getElementById('score').innerText 
     let gamesData = new GamesData
     gamesData.createNewGame(score, app.user.nickname) 
@@ -234,7 +234,7 @@ function createGame() {
 
 function renderHighscore(){
     let gamesData = new GamesData
-    gamesData.renderHighScore()
+    gamesData.fetchAndLoadGames
 }
 
 function createGameOverMsg() {
