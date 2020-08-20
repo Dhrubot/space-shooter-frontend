@@ -64,7 +64,7 @@ function createLaser() {
 
     let newLaser = document.createElement('img')
     newLaser.src = 'images/laser.png'
-    newLaser.classList.add('laser')
+    newLaser.className = 'laser'
     newLaser.style.bottom = `${xPosition + 40}px`
     newLaser.style.left = `${yPosition - 30}px`
 
