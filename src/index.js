@@ -234,7 +234,7 @@ function saveGame() {
 
 function renderHighscore(){
     let gamesData = new GamesData
-    gamesData.fetchAndLoadGames
+    gamesData.fetchAndLoadGames()
 }
 
 function createGameOverMsg() {

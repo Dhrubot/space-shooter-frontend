@@ -2,7 +2,6 @@ class GamesData {
     constructor() {
         this.adapter = new GamesAdapter()
         this.games = []
-        this.fetchAndLoadGames()
     }
 
     fetchAndLoadGames() {
