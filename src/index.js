@@ -78,7 +78,7 @@ function moveLaser(laser) {
         let enemies = document.querySelectorAll('.active-enemy')
         enemies.forEach(enemy=> {
             if (shootEmDown(laser,enemy)) {
-                laser.remove()
+                laser.parentNode.removeChild(laser)
                 enemy.src = "images/explosion.png"
                 enemy.classList.remove('active-enemy')
                 enemy.classList.add('dead-enemy', 'fade-out')
