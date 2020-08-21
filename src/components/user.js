@@ -29,6 +29,7 @@ class User {
     welcomeText(text) {
        (function iterator(i) {
             if (i < text.length) {
+                document.getElementById('search-bar').style.display = 'none'
                 let container = document.getElementById('nickname-container')
                 container.style.marginTop = "200px"
                 container.innerHTML += text.charAt(i)

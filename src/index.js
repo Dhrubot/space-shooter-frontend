@@ -172,10 +172,10 @@ function exitFuncListener() {
 // -------Starting Game-----
 
 function startGame() {
-    // debugger
     document.querySelector('#start-button').style.display = 'none'
     document.getElementById('user-container').style.display = 'none'
-    document.getElementById('nickname-container').style.display = 'none'
+    document.getElementById('search-bar').style.display = 'none'
+
     
     document.addEventListener("keydown", userShipMovement)
     createScoreCounter()
