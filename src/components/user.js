@@ -2,6 +2,7 @@ class User {
     constructor() {
         this.adapter = new UsersAdapter()
         this.createUserEventListenser()
+        this.createUserSearchListener()
     }
 
     createUserEventListenser() {
@@ -36,6 +37,27 @@ class User {
                 }, 50);
             }
         })(0)
+    }
+
+    createUserSearchListener() {
+        this.searchForm = document.getElementById('search-user-form')
+        this.searchInput = document.getElementById('search')
+        this.searchForm.addEventListener("submit", this.fetchUser.bind(this))
+    }
+
+    fetchUser(e){
+        e.preventDefault()
+        mainPlayArea.innerHTML = ''
+        this.adapter.getUser(this.searchInput.value.toLowerCase())
+        .then(userData => this.renderUserInfo(userData))
+    }
+
+    renderUserInfo(data) {
+        let container = document.createElement('table')
+        container.style.marginLeft = '400px'
+        container.innerHTML = `<caption id="caption"> ${data.nickname} </caption><tr style="color: blue"><th>Game ID</th><th>Score</th>`
+        container.innerHTML += data.games.map(game => `<tr style="color: red"><td> ${game.id}</td> <td>${game.score}</td></tr>`)
+        mainPlayArea.append(container)
     }
  
 }

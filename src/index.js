@@ -245,3 +245,14 @@ function createGameOverMsg() {
     gameOverDiv.style = 'top: 10px; color: LightBlue;'
     mainPlayArea.append(gameOverDiv)
 }
+
+// function searchBar() {
+//     let searchBarDiv = document.createElement('div')
+//     searchBarDiv.innerHTML = '<form id="search"> <input type="text" id="user-data" placeholder="Search by User"/> <input type="submit"/> </form>'
+//     mainPlayArea.append(searchBarDiv)
+// }
+
+function fetchUserandGameData(e) {
+    e.preventDefault()
+    let user = document.getElementById('user-data')
+}

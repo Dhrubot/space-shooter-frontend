@@ -20,4 +20,8 @@ class UsersAdapter {
         })
         .then(res => res.json())
     }
+
+    getUser(nickname){
+        return fetch(`${this.baseUrl}/${nickname}`).then(res => res.json())
+    }
 }
