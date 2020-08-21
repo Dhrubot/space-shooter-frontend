@@ -174,7 +174,7 @@ function exitFuncListener() {
 function startGame() {
     document.querySelector('#start-button').style.display = 'none'
     document.getElementById('user-container').style.display = 'none'
-    document.getElementById('search-bar').style.display = 'none'
+    document.getElementById('nickname-container').style.display = 'none'
 
     
     document.addEventListener("keydown", userShipMovement)
@@ -218,6 +218,7 @@ function gameOver() {
     let playerShip = document.getElementById('player-ship')
     playerShip.remove()
     createGameOverMsg()
+    createUserSearchDiv()
 
     clearInterval(createEnemyShipsInterval)
     clearInterval(enemyShipMovement)
@@ -234,7 +235,17 @@ function saveGame() {
 
 function renderHighscore(){
     let gamesData = new GamesData
-    gamesData.fetchAndLoadGames()
+    document.addEventListener("submit", (e) => {
+        e.preventDefault()
+        let gameOverDiv = document.getElementById('game-over')
+        let highScoreContainer = document.getElementById('high-score-container')
+        if (highScoreContainer && gameOverDiv) {
+            highScoreContainer.remove()
+            gameOverDiv.remove()
+        }
+        let nickName = e.target[0].value.toLowerCase()
+        gamesData.sortByUser(nickName)
+    })
 }
 
 function createGameOverMsg() {
@@ -246,13 +257,12 @@ function createGameOverMsg() {
     mainPlayArea.append(gameOverDiv)
 }
 
-// function searchBar() {
-//     let searchBarDiv = document.createElement('div')
-//     searchBarDiv.innerHTML = '<form id="search"> <input type="text" id="user-data" placeholder="Search by User"/> <input type="submit"/> </form>'
-//     mainPlayArea.append(searchBarDiv)
-// }
-
-function fetchUserandGameData(e) {
-    e.preventDefault()
-    let user = document.getElementById('user-data')
+function createUserSearchDiv() {
+    let searchBarDiv = document.createElement('div')
+    searchBarDiv.innerHTML += `<form id="search-user-form">
+        <input type = "text" id = "search" placeholder = "Search by nickname to checkout your score">
+            <input type="submit" id="search-button" value="Search">
+                </form>`
+    mainPlayArea.append(searchBarDiv)
 }
+
