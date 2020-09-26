@@ -1,6 +1,6 @@
 class UsersAdapter {
     constructor() {
-        this.baseUrl = 'https://limitless-shelf-98001.herokuapp.com/api/v1/users'
+        this.baseUrl = 'http://limitless-shelf-98001.herokuapp.com/api/v1/users'
     }
 
     getUsers() {
