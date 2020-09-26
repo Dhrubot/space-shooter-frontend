@@ -38,7 +38,7 @@ class GamesData {
         let container = document.createElement('table')
         container.id = 'search-table'
         container.style.marginLeft = '400px'
-        container.innerHTML = `<caption id="caption"> ${nickName} </caption><tr style="color: blue"><th>Game ID</th><th>Score</th>`
+        container.innerHTML = `<caption id="caption"> ${nickName}'s Game Scores </caption><tr style="color: blue"><th>Game ID</th><th>Score</th>`
         this.games.filter(game => {
             
             if (game.userNickname === nickName) {
