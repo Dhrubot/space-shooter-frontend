@@ -218,13 +218,13 @@ function gameOver() {
     let playerShip = document.getElementById('player-ship')
     playerShip.remove()
     createGameOverMsg()
-    createUserSearchDiv()
+    // createUserSearchDiv()
 
     clearInterval(createEnemyShipsInterval)
     clearInterval(enemyShipMovement)
     saveGame()
     header.remove()
-    renderHighscore()
+    // renderHighscore()
 }
 
 function saveGame() {
@@ -233,20 +233,20 @@ function saveGame() {
     gamesData.createNewGame(score, app.user.nickname) 
 }
 
-function renderHighscore(){
-    let gamesData = new GamesData
-    document.addEventListener("submit", (e) => {
-        e.preventDefault()
-        let gameOverDiv = document.getElementById('game-over')
-        let highScoreContainer = document.getElementById('high-score-container')
-        if (highScoreContainer && gameOverDiv) {
-            highScoreContainer.remove()
-            gameOverDiv.remove()
-        }
-        let nickName = e.target[0].value.toLowerCase()
-        gamesData.sortByUser(nickName)
-    })
-}
+// function renderHighscore(){
+//     let gamesData = new GamesData
+//     document.addEventListener("submit", (e) => {
+//         e.preventDefault()
+//         let gameOverDiv = document.getElementById('game-over')
+//         let highScoreContainer = document.getElementById('high-score-container')
+//         if (highScoreContainer && gameOverDiv) {
+//             highScoreContainer.remove()
+//             gameOverDiv.remove()
+//         }
+//         let nickName = e.target[0].value.toLowerCase()
+//         gamesData.sortByUser(nickName)
+//     })
+// }
 
 function createGameOverMsg() {
     let score = document.getElementById('score').innerText
@@ -257,12 +257,17 @@ function createGameOverMsg() {
     mainPlayArea.append(gameOverDiv)
 }
 
-function createUserSearchDiv() {
-    let searchBarDiv = document.createElement('div')
-    searchBarDiv.innerHTML += `<form id="search-user-form">
-        <input type = "text" id = "search" placeholder = "Search by nickname to checkout your score">
-            <input type="submit" id="search-button" value="Search">
-                </form>`
-    mainPlayArea.append(searchBarDiv)
-}
+
+
+
+// Search input for sorting the game scores by username
+
+// function createUserSearchDiv() {
+//     let searchBarDiv = document.createElement('div')
+//     searchBarDiv.innerHTML += `<form id="search-user-form">
+//         <input type = "text" id = "search" placeholder = "Search by nickname to checkout your score">
+//             <input type="submit" id="search-button" value="Search">
+//                 </form>`
+//     mainPlayArea.append(searchBarDiv)
+// }
 

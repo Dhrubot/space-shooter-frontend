@@ -1,6 +1,6 @@
 class GamesAdapter {
     constructor() {
-        this.baseUrl = 'http://localhost:3000/api/v1/games'
+        this.baseUrl = 'https://limitless-shelf-98001.herokuapp.com/api/v1/games'
     }
 
     getGames() {

@@ -31,22 +31,30 @@ class GamesData {
         this.adapter.createGame(score, nickname)
     }
 
-    sortByUser(nickName) {
-        if (document.getElementById('search-table')){
-            document.getElementById('search-table').remove()
-        }
-        let container = document.createElement('table')
-        container.id = 'search-table'
-        container.style.marginLeft = '400px'
-        container.innerHTML = `<caption id="caption"> ${nickName}'s Game Scores </caption><tr style="color: blue"><th>Game ID</th><th>Score</th>`
-        this.games.filter(game => {
+
+
+
+    
+    // Tried a function that would sort the game scores by the username
+
+
+
+    // sortByUser(nickName) {
+    //     if (document.getElementById('search-table')){
+    //         document.getElementById('search-table').remove()
+    //     }
+    //     let container = document.createElement('table')
+    //     container.id = 'search-table'
+    //     container.style.marginLeft = '400px'
+    //     container.innerHTML = `<caption id="caption"> ${nickName}'s Game Scores </caption><tr style="color: blue"><th>Game ID</th><th>Score</th>`
+    //     this.games.filter(game => {
             
-            if (game.userNickname === nickName) {
-                container.innerHTML +=  `<tr style="color: red"><td> ${game.id}</td> <td>${game.score}</td></tr>`
-                mainPlayArea.append(container)
-            }
-        })
-    }
+    //         if (game.userNickname === nickName) {
+    //             container.innerHTML +=  `<tr style="color: red"><td> ${game.id}</td> <td>${game.score}</td></tr>`
+    //             mainPlayArea.append(container)
+    //         }
+    //     })
+    // }
 
 
 }
