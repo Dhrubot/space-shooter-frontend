@@ -1,10 +1,11 @@
 
 body {
-    background-image: url('/Users/Dhrubo/Desktop/Flatiron_School/js-project/space-shooter-frontend/images/background.png');
+    background-image: url('../images/stars.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-size: 100% 100%;
+    background-color: black;
 }
 
 .welcome{
@@ -176,7 +177,7 @@ th, td {
     /* margin: 25px 50px 75px 100px; */
 }
 
-#search {
+/* #search {
     height: 40px;
     width: 300px;
-}
+} */

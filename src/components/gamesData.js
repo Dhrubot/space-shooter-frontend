@@ -23,7 +23,7 @@ class GamesData {
         highScoreContainer.style.marginTop = '150px'
         const highScoreTable = document.getElementById('high-score')
         highScoreTable.innerHTML = `<caption id="caption"> Top Scorer </caption><tr><th>Username</th><th>Score</th>`
-        highScoreTable.innerHTML += this.games.map(game => `<tr><td> ${game.userNickname}</td> <td>${game.score}</td></tr>`).join('')
+        highScoreTable.innerHTML += this.games.slice(0, 10).map(game => `<tr><td> ${game.userNickname}</td> <td>${game.score}</td></tr>`).join('')
     }
 
 
